@@ -1,32 +1,15 @@
 import { Client, GatewayIntentBits } from "discord.js";
 
 const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent
-  ]
+  intents: [GatewayIntentBits.Guilds]
 });
 
 client.on("ready", () => {
-  console.log(`Bot online como ${client.user.tag}`);
-});
-
-client.on("messageCreate", async (msg) => {
-  // Ignorar mensagens do próprio bot
-  if (msg.author.bot) return;
-
-  // O ID da conta para onde queres enviar
-  const targetUserId = "O_TEUID_AQUI";
-  const user = await client.users.fetch(targetUserId);
-
-  // Enviar a mensagem para ti
-  user.send(
-    `📩 **Mensagem recebida no servidor**  
-👤 **Autor:** ${msg.author.username}  
-#️⃣ **Canal:** ${msg.channel.name}  
-💬 **Mensagem:** ${msg.content}`
-  );
+  console.log(`Bot ligado como ${client.user.tag}`);
+  client.user.setPresence({
+    status: "online",
+    activities: [{ name: "Sempre online 👑" }]
+  });
 });
 
 client.login(process.env.TOKEN);
