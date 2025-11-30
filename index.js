@@ -1,12 +1,14 @@
+
 import { Client, GatewayIntentBits } from "discord.js";
 import dotenv from "dotenv";
+dotenv.config();
+console.log("Bot a iniciar...");
 const client = new Client({
   intents: [GatewayIntentBits.Guilds]
 });
-dotenv.config();
 
 // O teu ID de utilizador que vai receber alertas
-const YOUR_USER_ID = "231920531606208512";
+const YOUR_USER_ID = process.env.USER_ID;
 
 client.on("ready", () => {
   console.log(`Bot ligado como ${client.user.tag}`);
@@ -14,6 +16,10 @@ client.on("ready", () => {
     status: "online",
     activities: [{ name: "Server Owner 👑" }]
   });
+});
+
+client.on("error", (err) => {
+  console.error("Erro no client:", err);
 });
 
 // Captura erros do Node.js
@@ -39,4 +45,5 @@ process.on("uncaughtException", async (error) => {
   }
 });
 
+console.log("A fazer login com o token...");
 client.login(process.env.TOKEN);
