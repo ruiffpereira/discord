@@ -14,7 +14,7 @@ client.on("ready", () => {
   console.log(`Bot ligado como ${client.user.tag}`);
   client.user.setPresence({
     status: "online",
-    activities: [{ name: "Server Owner 👑" }]
+    activities: [{ name: "Admin 👑" }]
   });
 });
 
