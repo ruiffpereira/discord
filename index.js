@@ -45,5 +45,6 @@ process.on("uncaughtException", async (error) => {
   }
 });
 
-console.log("A fazer login com o token...");
-client.login(process.env.TOKEN);
+client.login(process.env.TOKEN).catch(err => {
+  console.error("Erro ao fazer login:", err);
+});
